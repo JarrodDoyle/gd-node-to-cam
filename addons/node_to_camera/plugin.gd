@@ -9,24 +9,12 @@ var ntc_ui: Control
 
 
 func _enter_tree() -> void:
-	var settings := ProjectSettings
-	settings.set_setting(PLUGIN_PATH + "shortcut_position", shortcut_pos)
-	settings.set_setting(PLUGIN_PATH + "shortcut_rotation", shortcut_rot)
-	settings.set_setting(PLUGIN_PATH + "shortcut_position_rotation", shortcut_pos_rot)
-
 	ntc_ui = _create_ui_control()
 	ntc_ui.set_visible(false)
 	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, ntc_ui)
 
 
 func _exit_tree() -> void:
-	var settings := ProjectSettings
-	settings.clear(PLUGIN_PATH + "shortcut")
-	settings.clear(PLUGIN_PATH + "shortcut_position")
-	settings.clear(PLUGIN_PATH + "shortcut_rotation")
-	settings.clear(PLUGIN_PATH + "shortcut_position_rotation")
-	settings.save()
-
 	if ntc_ui:
 		remove_control_from_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, ntc_ui)
 		ntc_ui.queue_free()
